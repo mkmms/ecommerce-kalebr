@@ -1,29 +1,38 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form-signin" }) do |f| %>
+    <h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :email, class: "sr-only" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email", required: true %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :name, class: "sr-only" %>
+    <%= f.text_field :name, autocomplete: "name", class: "form-control", placeholder: "Name", required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :mobile, class: "sr-only" %>
+    <%= f.text_field :mobile, autocomplete: "mobile", class: "form-control", placeholder: "Mobile", required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, class: "sr-only" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Password", required: true %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.label :password_confirmation, class: "sr-only" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirm Password", required: true %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class: "btn btn-lg btn-primary btn-block" %>
   </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+  <%= render "devise/shared/links" %>
+<% end %>

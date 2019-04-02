@@ -9,7 +9,7 @@ class Home extends React.Component {
     return (
       <React.Fragment>
       	<h1>Hello World</h1>
-      	<button onClick={this.handleOnClick}>Click Me</button>
+      	<button className="btn btn-primary" onClick={this.handleOnClick}>Click Me</button>
       </React.Fragment>
     );
   }

@@ -10,16 +10,7 @@
     <%= javascript_pack_tag 'application' %>
   </head>
 
-  <body>
-    <%
-      auth = {
-        isLoggedIn: user_signed_in?,
-        currentUser: current_user,
-        isAdmin: current_user ? current_user.admin? : false
-      }
-    %>
-    <%= react_component("layouts/Header", { auth: auth }, {prerender: true}) %>
+  <body class="text-center auth">
     <%= yield %>
-    <%= react_component("layouts/Footer", {}, {prerender: true}) %>
   </body>
 </html>
