@@ -12,8 +12,8 @@ const LoggedIn = ({
       {
         isAdmin ? (
           <Fragment>
-            <a className="p-2 text-dark" href="#">Products</a>
-            <a className="p-2 text-dark" href="#">Categories</a>
+            <a className="p-2 text-dark" href="/producs">Products</a>
+            <a className="p-2 text-dark" href="/categories">Categories</a>
           </Fragment>
         ) : null
       }
@@ -21,8 +21,8 @@ const LoggedIn = ({
       {
         !isAdmin ? (
           <Fragment>
-            <a className="p-2 text-dark" href="#">Cart</a>
-            <a className="p-2 text-dark" href="#">My Orders</a>
+            <a className="p-2 text-dark" href="/cart">Cart</a>
+            <a className="p-2 text-dark" href="/myself">My Orders</a>
           </Fragment>
         ) : null
       }
@@ -36,8 +36,8 @@ const LoggedOut = ({isLoggedIn}) => {
 
   return (
     <Fragment>
-      <a className="mr-2 btn btn-outline-primary" href="#">Sign up</a>
-      <a className="btn btn-outline-primary" href="#">Sign in</a>
+      <a className="mr-2 btn btn-outline-primary" href="/users/sign_up">Sign up</a>
+      <a className="btn btn-outline-primary" href="/users/sign_in">Sign in</a>
     </Fragment>
   )
 }
@@ -48,7 +48,7 @@ class Header extends Component{
       <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
         <h5 className="my-0 mr-md-auto font-weight-normal">Test</h5>
         <nav className="my-2 my-md-0 mr-md-3">
-          <a className="p-2 text-dark" href="#">Home</a>
+          <a className="p-2 text-dark" href="/">Home</a>
           <LoggedIn
             isLoggedIn={this.props.auth.isLoggedIn}
             isAdmin={this.props.auth.isAdmin}
