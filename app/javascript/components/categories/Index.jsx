@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import {
+  TiEdit,
+  TiTrash
+} from 'react-icons/ti';
+import moment from 'moment';
 
 import AddCategory from './AddCategory';
 import api from '../../axios.instance';
@@ -6,7 +11,8 @@ import api from '../../axios.instance';
 class Categories extends Component{
   state ={
     isOpened: false,
-    categories: []
+    categories: [],
+    categoryEditable: null
   }
 
   componentDidMount(){
@@ -18,11 +24,37 @@ class Categories extends Component{
   updateCategories(category){
     let categories = [...this.state.categories]
 
+    categories = categories.filter( (cat) => cat.id !== category.id )
+
     categories.push(category);
 
     this.setState({
       categories
     })
+  }
+
+  editCategory(categoryEditable){
+    this.setState({
+      categoryEditable,
+      isOpened: true
+    })
+  }
+
+  deleteCategory(id){
+    if( confirm("Are you sure to Delete Category?") ){
+      api.delete(`/categories/${id}.json`)
+        .then((res) => {
+          let categories = [...this.state.categories]
+
+          categories = categories.filter( (cat) => cat.id !== id )
+
+          this.setState({
+            categories
+          })
+        }).catch( (err) => {
+          console.log(err)
+        })
+    }
   }
 
   render(){
@@ -45,6 +77,7 @@ class Categories extends Component{
             <tr>
               <th>Category</th>
               <th>Slug</th>
+              <th>Created On</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -55,7 +88,28 @@ class Categories extends Component{
                   <tr key={index}>
                     <td>{category.title}</td>
                     <td>{category.slug}</td>
-                    <td></td>
+                    <td>{moment(category.created_at).format("DD/MM/YYYY hh:mm a")}</td>
+                    <td>
+                      <button 
+                        className="btn btn-link mr-3"
+                        onClick={ this.editCategory.bind(this, category.id) }
+                        style={{
+                          cursor: 'pointer'
+                        }}
+                      >
+                        <TiEdit size={'2em'}/>
+                      </button>
+                      <button 
+                        className="btn btn-link"
+                        onClick={ this.deleteCategory.bind(this, category.id) }
+                        style={{
+                          color: 'red',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        <TiTrash size={'2em'}/>
+                      </button>
+                    </td>
                   </tr>
                 )
               })
@@ -66,6 +120,8 @@ class Categories extends Component{
           isOpened={this.state.isOpened}
           onCloseCategory={ () => this.setState({ isOpened: false }) }
           onSave={ (data) => this.updateCategories(data) }
+          categoryEditable={ this.state.categoryEditable }
+          categories={ this.state.categories }
         />
       </div>
     )

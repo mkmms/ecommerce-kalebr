@@ -17,7 +17,14 @@ class AddCategory extends Component{
 
   handleSubmit(e){
     e.preventDefault()
-    api.post('/categories.json', {
+
+    let urlEndPoint = !!this.props.categoryEditable 
+      ? `/categories/${this.props.categoryEditable}.json` 
+      : '/categories.json';
+
+    let method = !!this.props.categoryEditable ? "patch" : "post"
+
+    api[method](urlEndPoint, {
       category: {
         title: this.refs.title.value.trim(),
         slug: this.refs.title.value.trim()
@@ -26,18 +33,31 @@ class AddCategory extends Component{
       this.props.onSave(res.data);
       this.props.onCloseCategory();
     }).catch( (err) => {
-      debugger;
+      console.log(err)
     })
+
   }
 
   render(){
+    let {
+      categoryEditable,
+      categories
+    } = this.props;
+
+    let category = !!categoryEditable 
+      ? categories
+        .filter((cat) => categoryEditable === cat.id)[0]
+      : {};
+
     return (
       <Modal 
         show={this.props.isOpened} 
         onHide={this.handleClose.bind(this)}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Create Category</Modal.Title>
+          <Modal.Title>
+            { !!categoryEditable ? 'Edit Category' : 'Create Category' }
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
 
@@ -51,6 +71,7 @@ class AddCategory extends Component{
                 aria-describedby="titleHelp"
                 ref="title"
                 required
+                defaultValue={ category.title }
               />
               <small 
                 id="titleHelp" 
@@ -67,6 +88,7 @@ class AddCategory extends Component{
                 aria-describedby="slugHelp"
                 ref="slug"
                 required
+                defaultValue={ category.slug }
               />
               <small 
                 id="slugHelp" 
