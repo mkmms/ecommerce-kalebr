@@ -29,7 +29,9 @@ class Categories extends Component{
     categories.push(category);
 
     this.setState({
-      categories
+      categories,
+      isOpened: false,
+      categoryEditable: null
     })
   }
 

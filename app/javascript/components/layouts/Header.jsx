@@ -12,7 +12,7 @@ const LoggedIn = ({
       {
         isAdmin ? (
           <Fragment>
-            <a className="p-2 text-dark" href="/producs">Products</a>
+            <a className="p-2 text-dark" href="/products">Products</a>
             <a className="p-2 text-dark" href="/categories">Categories</a>
           </Fragment>
         ) : null

@@ -3,12 +3,14 @@ import {
   Modal
 } from 'react-bootstrap';
 import api from '../../axios.instance';
+import Errors from '../common/Errors';
 
 class AddCategory extends Component{
 
   state={
     title: "",
-    slug: ""
+    slug: "",
+    errors: null
   }
 
   handleClose(){
@@ -32,8 +34,12 @@ class AddCategory extends Component{
     }).then((res) => {
       this.props.onSave(res.data);
       this.props.onCloseCategory();
+      this.refs.categoryForm.reset();
     }).catch( (err) => {
-      console.log(err)
+      this.refs.categoryForm.reset();
+      this.setState({
+        errors: err.response.data
+      })
     })
 
   }
@@ -61,7 +67,12 @@ class AddCategory extends Component{
         </Modal.Header>
         <Modal.Body>
 
-          <form onSubmit={ this.handleSubmit.bind(this) }>    
+          <Errors 
+            errors={this.state.errors}
+            onClose={ () => this.setState({ errors: null }) }
+          />
+
+          <form ref="categoryForm" onSubmit={ this.handleSubmit.bind(this) }>    
             <div className="form-group">
               <label>Title</label>
               <input 
