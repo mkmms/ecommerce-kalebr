@@ -12,12 +12,14 @@ class Products extends Component{
   state ={
     isOpened: false,
     products: [],
+    categories: [],
     productEditable: null
   }
 
   componentDidMount(){
     this.setState({
-      products: this.props.products
+      products: this.props.products,
+      categories: this.props.categories
     })
   }
 
@@ -102,6 +104,7 @@ class Products extends Component{
           onSave={ (data) => this.updateProducts(data) }
           productEditable={ this.state.productEditable }
           products={ this.state.products }
+          categories={ this.state.categories }
         />
       </div>
     )

@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
+    @categories = Category.all.pluck(:title, :id)
     @products = Product.all
   end
 
@@ -65,6 +66,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:title, :slug, :description, :category_id, :price, :image)
+      params.require(:product).permit(:title, :slug, :description, :category_id, :price, :image, :quantity)
     end
 end
