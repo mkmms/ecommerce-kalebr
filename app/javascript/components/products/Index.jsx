@@ -76,28 +76,61 @@ class Products extends Component{
           </button>
         </h1>
 
-        <div className="row">  
-          {
-            products.map((product, index) => {
-              return (
-                <div className="col-sm-4" key={index}>
-                  <div className="card" style={{width: "18rem"}}>
-                    <img 
-                      src={product.image.url} 
-                      className="card-img-top"
-                      style={{ minHeight: '260px' }}>
-                    </img>
-                    <div className="card-body">
-                      <h5 className="card-title">{product.title}</h5>
-                      <p className="card-text">{product.description}</p>
-                      <button className="btn btn-primary">{product.price}</button>
-                    </div>
-                  </div>
-                </div>
-              )
-            })
-          }
-        </div>
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>quantity</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              products.map((product, index) => {
+                return (
+                  <tr key={index}>
+                    <td>
+                      <img 
+                        src={product.image.url} 
+                        className="card-img-top"
+                        style={{ width: '260px' }}
+                      />
+                    </td>
+                    <td>{product.title}</td>
+                    <td>{product.description}</td>
+                    <td>Rs. {product.price}</td>
+                    <td>{product.quantity}</td>
+                    <td>
+                      <button 
+                        className="btn btn-link mr-3"
+                        onClick={ this.editProduct.bind(this, product.id) }
+                        style={{
+                          cursor: 'pointer'
+                        }}
+                      >
+                        <TiEdit size={'2em'}/>
+                      </button>
+                      <button 
+                        className="btn btn-link"
+                        onClick={ this.deleteProduct.bind(this, product.id) }
+                        style={{
+                          color: 'red',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        <TiTrash size={'2em'}/>
+                      </button>
+                    </td>
+                  </tr>
+                )
+              })
+            }
+          </tbody>
+        </table>
+
         <AddProduct
           isOpened={this.state.isOpened}
           onCloseProduct={ () => this.setState({ isOpened: false }) }
