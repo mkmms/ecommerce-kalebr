@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  verification_code: MyString
+  status: 1
+  price: 1
+  user: one
+  product: one
+
+two:
+  verification_code: MyString
+  status: 1
+  price: 1
+  user: two
+  product: two

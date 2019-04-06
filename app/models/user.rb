@@ -3,6 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   enum role: [:user, :admin]
   after_initialize :set_default_role, :if => :new_record?
+  has_many :orders
 
   # Constants
   ADMIN = 1

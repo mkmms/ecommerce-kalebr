@@ -31,7 +31,7 @@ const LoggedIn = ({
               Cart
               ({cartIcon})
             </a>
-            <a className="p-2 text-dark" href="/myself">My Orders</a>
+            <a className="p-2 text-dark" href="/my_orders">My Orders</a>
           </Fragment>
         ) : null
       }
@@ -54,20 +54,24 @@ const LoggedOut = ({isLoggedIn}) => {
 class Header extends Component{
   render(){
     return (
-      <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-        <h5 className="my-0 mr-md-auto font-weight-normal">
-          <a className="p-2 text-dark" href="/">Shop</a>
-        </h5>
-        <nav className="my-2 my-md-0 mr-md-3">
-          <LoggedIn
-            isLoggedIn={this.props.auth.isLoggedIn}
-            isAdmin={this.props.auth.isAdmin}
-            cart={this.props.cart}
-          />
-        </nav>
-        <LoggedOut
-          isLoggedIn={this.props.auth.isLoggedIn}
-        />
+      <div className="p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <div className="container">
+          <div class="d-flex flex-column flex-md-row align-items-center ">
+            <h5 className="my-0 mr-md-auto font-weight-normal">
+              <a className="p-2 text-dark" href="/">Shop</a>
+            </h5>
+            <nav className="my-2 my-md-0 mr-md-3">
+              <LoggedIn
+                isLoggedIn={this.props.auth.isLoggedIn}
+                isAdmin={this.props.auth.isAdmin}
+                cart={this.props.cart}
+              />
+            </nav>
+            <LoggedOut
+              isLoggedIn={this.props.auth.isLoggedIn}
+            />
+          </div>
+        </div>
       </div>
     )
   }

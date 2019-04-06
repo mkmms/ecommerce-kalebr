@@ -1,9 +1,10 @@
+# https://www.robinwieruch.de/postgres-sql-macos-setup/
 development:
   adapter: postgresql
   encoding: unicode
   database: ecommerce
   pool: 5
-  username: bitlasoft
+  username: mutha
   password:
 
 test:
@@ -11,5 +12,5 @@ test:
   encoding: unicode
   database: ecommerce
   pool: 5
-  username: bitlasoft
+  username: mutha
   password:

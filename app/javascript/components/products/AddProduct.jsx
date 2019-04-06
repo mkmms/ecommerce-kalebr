@@ -161,17 +161,6 @@ class AddProduct extends Component{
                     defaultValue={ product.price }
                   />
                 </div>
-
-                <div className="form-group">
-                  <label>Quantity</label>
-                  <input 
-                    type="number"
-                    className="form-control" 
-                    ref="quantity"
-                    required
-                    defaultValue={ product.quantity }
-                  />
-                </div>
               </div>
               <div className="col-sm-6">
                 <ImageUploader 
