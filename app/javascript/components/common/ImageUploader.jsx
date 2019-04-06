@@ -3,8 +3,11 @@ import React, { Component } from 'react';
 class ImageUploader extends Component {
   constructor(props) {
     super(props);
-    this.state = {file: '',imagePreviewUrl: ''};
-    props.mageUploaderRef(this);
+    this.state = {
+      file: '',
+      imagePreviewUrl: !!props.uploadedImage ? props.uploadedImage.url : ""
+    };
+    props.imageUploaderRef(this);
   }
 
   handleImageChange(e) {

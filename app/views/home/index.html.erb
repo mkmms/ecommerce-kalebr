@@ -1,1 +1,7 @@
-<%= react_component("home/Index", {}, {prerender: true}) %>
+<%= 
+  react_component("home/Index", {
+    products: @products
+  }, {
+    prerender: true
+  }) 
+%>

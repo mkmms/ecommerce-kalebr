@@ -15,10 +15,10 @@
       auth = {
         isLoggedIn: user_signed_in?,
         currentUser: current_user,
-        isAdmin: current_user ? current_user.admin? : false
+        isAdmin: current_user ? current_user.admin? : false,
       }
     %>
-    <%= react_component("layouts/Header", { auth: auth }, {prerender: true}) %>
+    <%= react_component("layouts/Header", { auth: auth, cart: @cart }, {prerender: true}) %>
     <%= yield %>
     <%= react_component("layouts/Footer", {}, {prerender: true}) %>
   </body>

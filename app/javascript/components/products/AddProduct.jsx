@@ -175,7 +175,8 @@ class AddProduct extends Component{
               </div>
               <div className="col-sm-6">
                 <ImageUploader 
-                  mageUploaderRef={ (child) => this.imageUploaderRef = child }
+                  imageUploaderRef={ (child) => this.imageUploaderRef = child }
+                  uploadedImage={ product.image }
                 />
               </div>
             </div>  
