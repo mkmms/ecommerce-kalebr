@@ -1,78 +1,69 @@
 import React from "react"
-import PropTypes from "prop-types"
 import api from '../../axios.instance';
 import Errors from "../common/Errors";
+import Categories from "./Categories";
+import Products from "./Products";
+import Success from "../common/Success";
 
 class Home extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
 			cart: this.props.cart,
-			errors: null
+			errors: null,
+			message: ""
 		}
 	}
 
-	handleOnClick(){
-		alert("Clicked!!!")
-	}
-
 	addTocart(product){
+		let self = this;
 		api.post(`/shop/add-to-cart`, {
 			id: product.id,
 			quantity: 1
 		}).then( ({data}) => {
-			
-		}).catch( ({data}) => {
-			
+			self.setState({
+				message: "Product Added into Cart Successfully"
+			})
+		}).catch( ({response}) => {
+			if( response.status == 401 ){
+				window.location = "/users/sign_in"
+			}
+
+			if( response.status == 405 ){
+				alert("Admin can not place the Order")
+			}
 		})
 	}
 
   render () {
 
-		if( this.props.products.length == 0 ) {
-			return (
-				<div>
-					No Products Available
-				</div>
-			)
-		}
-
     return (
-			<div className="album py-5 bg-light">
-				<div className="container">
-				
+			<div className="container">
+				<div className="text-center p-3">
+					<h2>Check out what's new</h2>
+					<p>Latest PDF's and Illustrations we have to offer</p>
+				</div>
+
+				<Categories 
+					categories={ this.props.categories }
+					activeCategory={this.props.category}
+				/>	
+
+				<div className="pt-4">
 					<Errors 
 						errors={this.state.errors}
-            onClose={ () => this.setState({ errors: null }) }
+						onClose={ () => this.setState({ errors: null }) }
 					/>
-
-					<div className="row">
-						{
-							this.props.products.map( (product) => {
-								return (
-									<div className="col-md-4" kwy={product.id}>
-										<div className="card mb-4 shadow-sm">
-											<img 
-												src={product.image.url} 
-												className="card-img-top"
-												style={{ width: '260px' }}
-											/>
-											<div className="card-body">
-												<p className="card-text">{product.description}</p>
-												<div className="d-flex justify-content-between align-items-center">
-													<div className="btn-group">
-														<button type="button" className="btn btn-sm btn-outline-secondary">Rs. {product.price}</button>
-														<button type="button" className="btn btn-sm btn-outline-secondary" onClick={ this.addTocart.bind(this, product) }>Cart</button>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								)
-							})
-						}
-		      </div>
-		    </div>
+					<Success 
+						message={this.state.message}
+						onClose={ () => this.setState({ message: "" }) }
+					/>
+					<Products 
+						products={this.props.products}
+						addTocart={ (product) => this.addTocart(product) }
+						isAdmin={this.props.is_admin}
+					/>
+				</div>
 		  </div>
     );
   }

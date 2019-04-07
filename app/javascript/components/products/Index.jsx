@@ -65,7 +65,7 @@ class Products extends Component{
     const products = this.state.products ? this.state.products : []
 
     return (
-      <div className="container">
+      <div className="container mt-3">
         <h1 className="row m-0 mb-3 display-5 justify-content-between flex-row">
           <span>Products</span>
           <button 
@@ -83,7 +83,6 @@ class Products extends Component{
               <th>Title</th>
               <th>Description</th>
               <th>Price</th>
-              <th>quantity</th>
               <th></th>
             </tr>
           </thead>
@@ -96,13 +95,12 @@ class Products extends Component{
                       <img 
                         src={product.image.url} 
                         className="card-img-top"
-                        style={{ width: '260px' }}
+                        style={{ maxHeight: '100px', maxWidth: '100px' }}
                       />
                     </td>
                     <td>{product.title}</td>
                     <td>{product.description}</td>
                     <td>Rs. {product.price}</td>
-                    <td>{product.quantity}</td>
                     <td>
                       <button 
                         className="btn btn-link mr-3"

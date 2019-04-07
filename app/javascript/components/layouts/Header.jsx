@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import Logo from '../../logo.png';
 
 const LoggedIn = ({
   isAdmin,
@@ -35,7 +36,7 @@ const LoggedIn = ({
           </Fragment>
         ) : null
       }
-      <a className="mr-2 btn btn-outline-primary" data-method="delete" href="/users/sign_out">Logout</a>
+      <a className="ml-3 btn btn-outline-danger" data-method="delete" href="/users/sign_out">Logout</a>
     </Fragment>
   )
 }
@@ -45,8 +46,8 @@ const LoggedOut = ({isLoggedIn}) => {
 
   return (
     <Fragment>
-      <a className="mr-2 btn btn-outline-primary" href="/users/sign_up">Sign up</a>
-      <a className="btn btn-outline-primary" href="/users/sign_in">Sign in</a>
+      <a className="mr-2 btn btn-outline-danger" href="/users/sign_up">Sign up</a>
+      <a className="btn btn-outline-danger" href="/users/sign_in">Sign in</a>
     </Fragment>
   )
 }
@@ -54,11 +55,13 @@ const LoggedOut = ({isLoggedIn}) => {
 class Header extends Component{
   render(){
     return (
-      <div className="p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+      <div className="p-3 px-md-4 bg-white border-bottom shadow-sm">
         <div className="container">
-          <div class="d-flex flex-column flex-md-row align-items-center ">
+          <div className="d-flex flex-column flex-md-row align-items-center ">
             <h5 className="my-0 mr-md-auto font-weight-normal">
-              <a className="p-2 text-dark" href="/">Shop</a>
+              <a className="p-2 text-dark" href="/">
+                <img src={Logo} style={{ maxWidth: '200px' }}/>
+              </a>
             </h5>
             <nav className="my-2 my-md-0 mr-md-3">
               <LoggedIn

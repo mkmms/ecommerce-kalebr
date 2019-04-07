@@ -14,7 +14,8 @@ class AddProduct extends Component{
       slug: "",
       errors: null
     }
-    this.imageUploaderRef = null
+    this.imageUploaderRef = null;
+    this.fileUploaderRef = null;
   }
 
   handleClose(){
@@ -37,7 +38,7 @@ class AddProduct extends Component{
     formData.append('product[category_id]', this.refs.category.value)
     formData.append('product[price]', this.refs.price.value.trim())
     formData.append('product[image]', this.imageUploaderRef.state.file)
-    formData.append('product[quantity]', this.refs.quantity.value.trim());
+    formData.append('product[file]', this.fileUploaderRef.state.file)
 
     api[method](urlEndPoint, formData).then((res) => {
       this.props.onSave(res.data);
@@ -166,6 +167,12 @@ class AddProduct extends Component{
                 <ImageUploader 
                   imageUploaderRef={ (child) => this.imageUploaderRef = child }
                   uploadedImage={ product.image }
+                />
+                <hr/>
+                <h2>Upload the Actual File</h2>
+                <ImageUploader 
+                  imageUploaderRef={ (child) => this.fileUploaderRef = child }
+                  uploadedImage={ product.file }
                 />
               </div>
             </div>  

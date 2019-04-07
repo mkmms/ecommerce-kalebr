@@ -1,7 +1,6 @@
 <%= 
-  react_component("home/Index", {
-    products: @products,
-    categories: @categories,
+  react_component("home/ProductDetails", {
+    product: @product,
     category: @category,
     is_admin: user_signed_in? && current_user.admin?
   }, {

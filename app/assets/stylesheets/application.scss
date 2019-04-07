@@ -8,7 +8,7 @@ $border1: 1px solid #ced4da;
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #f5f5f5;
+  background-color: #fff;
   .form-signin {
     width: 100%;
     max-width: 330px;
@@ -78,4 +78,44 @@ $border1: 1px solid #ced4da;
 .cart-img{
   max-width: 100px;
   max-height: 100px;
+}
+
+.product{
+  margin-bottom: 30px;
+  .product-img{
+    background: #eee;
+    text-align: center;
+    height: 255px;
+    img{
+      width: 100px;
+      height: 100px;
+      margin-top: 75px;
+    }
+  }
+  .product-content{
+    margin-top: 15px;
+    & > div{
+      float: left;
+      &:first-child {
+        width: calc(100% - 85px);
+        h4{
+          font-size: 14px;
+          line-height: 22px;
+        }
+      }
+      &:last-child {
+        width: 85px;
+        text-align: right;
+        font-weight: 600;
+      }
+    }
+    &:after{
+      content: "";
+      clear: both;
+      display: block;
+    }
+  }
+  .product-footer{
+    margin-top: 15px;
+  }
 }

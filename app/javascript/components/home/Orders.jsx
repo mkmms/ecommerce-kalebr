@@ -32,7 +32,7 @@ class Orders extends Component{
 
     return (
       <div className="container">
-        <h1 className="row m-0 mb-3 display-5 justify-content-between flex-row">
+        <h1 className="row m-0 mb-3 mt-3 display-5 justify-content-between flex-row">
           <span>Orders</span>
         </h1>
 

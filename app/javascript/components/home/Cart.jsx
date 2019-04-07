@@ -107,63 +107,63 @@ class Cart extends Component{
     }, 0)
 
     return (
-      <div className="container">
+      <div className="container mt-3">
         <h1 className="row m-0 mb-3 display-5 justify-content-between flex-row">
           <span>Cart</span>
         </h1>
 
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>Image</th>
-              <th>Title</th>
-              <th>Price</th>
-              <th></th>
-              <th className="text-right">Sub Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              cart.map((product, index) => {
-                return (
-                  <tr key={index}>
-                    <td>
-                      <img 
-                        src={product.url} 
-                        className="card-img-top cart-img"
-                      />
-                    </td>
-                    <td>{product.title}</td>
-                    <td>Rs. {product.price}</td>
-                    <td>
-                      <button 
-                        className="btn btn-link"
-                        onClick={ this.clearCartItem.bind(this, product) }
-                      >Clear</button>
-                    </td>
-                    <td className="text-right">
-                      Rs. {product.price}
-                    </td>
-                  </tr>
-                )
-              })
-            }
-            <tr>
-              <td colSpan="4"></td>
-              <td className="text-right">Total: Rs. {totalPrice} </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div>
-          <button 
-            className="btn btn-danger mr-2" 
-            onClick={ this.clearCartItem.bind(this, {}, true) }
-          >Clear Cart</button>
-          <button 
-            className="btn btn-primary"
-            onClick={ this.checkoutOrder.bind(this) }
-          >Checkout</button>
+        <div className="row">
+          <div className="col-sm-8">
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Title</th>
+                  <th></th>
+                  <th className="text-right">Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  cart.map((product, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>
+                          <img 
+                            src={product.url} 
+                            className="card-img-top cart-img"
+                          />
+                        </td>
+                        <td>{product.title}</td>
+                        <td>
+                          <button 
+                            className="btn btn-link"
+                            onClick={ this.clearCartItem.bind(this, product) }
+                          >Clear</button>
+                        </td>
+                        <td className="text-right">
+                          Rs. {product.price}
+                        </td>
+                      </tr>
+                    )
+                  })
+                }
+              </tbody>
+            </table>
+          </div>
+          <div className="col-sm-4">
+            <div>
+              <button 
+                className="btn btn-success mr-2 mb-2"
+                onClick={ this.checkoutOrder.bind(this) }
+              >Checkout</button>
+              <br/>
+              <button 
+                className="btn btn-danger " 
+                onClick={ this.clearCartItem.bind(this, {}, true) }
+              >Clear Cart</button>
+            </div>
+          </div>
         </div>
 
       </div>

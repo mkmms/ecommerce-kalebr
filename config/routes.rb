@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   get 'home/index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "home#index"
+  get "category/:slug", to: "home#product_by_category"
   post "/shop/add-to-cart", to: "home#add_to_cart"
   post "/shop/clear-from-cart", to: "home#clear_from_cart"
+  get "/shop/:slug", to: "home#product"
   get "/cart", to: "home#cart"
   post "/checkout", to: "home#checkout"
   post "/confirm_order", to: "home#confirm_order"
