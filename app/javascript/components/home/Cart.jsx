@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-import {
-  TiEdit,
-  TiTrash
-} from 'react-icons/ti';
 
 import api from '../../axios.instance';
 import Checkout from './Checkout';
@@ -148,6 +144,10 @@ class Cart extends Component{
                     )
                   })
                 }
+                <tr>
+                  <td colSpan={3}></td>
+                  <td className="text-right" >Total: ${totalPrice}</td>
+                </tr>
               </tbody>
             </table>
           </div>

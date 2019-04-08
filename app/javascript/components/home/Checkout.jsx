@@ -39,12 +39,12 @@ class Checkout extends Component {
               Confirm OTP
             </button>
 
-            <button 
-              className="btn btn-outline-danger my-2 my-sm-0" 
+            {/*<button
+              className="btn btn-outline-danger my-2 my-sm-0"
               type="button"
             >
               Resnd OTP
-            </button>
+            </button>*/}
           </form>
 
           <button 

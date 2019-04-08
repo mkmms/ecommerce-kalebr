@@ -63,7 +63,7 @@ class Categories extends Component{
     const categories = this.state.categories ? this.state.categories : []
 
     return (
-      <div className="container">
+      <div className="container pt-3">
         <h1 className="row m-0 mb-3 display-5 justify-content-between flex-row">
           <span>Categories</span>
           <button 

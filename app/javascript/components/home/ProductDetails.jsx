@@ -42,7 +42,7 @@ class ProductDetails extends Component{
         <div className="row product-details">
           <div className="col-sm-6">
             <div className="product-img">
-              <img src={product.image.url} />
+              <img src={product.image.url} style={{ maxWidth: '500px' }}/>
             </div>
           </div>
           <div className="col-sm-6">
