@@ -13,7 +13,7 @@ class AddProduct extends Component{
       title: "",
       slug: "",
       errors: null
-    }
+    };
     this.imageUploaderRef = null;
     this.fileUploaderRef = null;
   }
@@ -29,16 +29,21 @@ class AddProduct extends Component{
       ? `/products/${this.props.productEditable}.json` 
       : '/products.json';
 
-    let method = !!this.props.productEditable ? "patch" : "post"
+    let method = !!this.props.productEditable ? "patch" : "post";
 
     let formData = new FormData();
-    formData.append('product[title]', this.refs.title.value.trim())
-    formData.append('product[slug]', this.refs.title.value.trim())
-    formData.append('product[description]', this.refs.description.value.trim())
-    formData.append('product[category_id]', this.refs.category.value)
-    formData.append('product[price]', this.refs.price.value.trim())
-    formData.append('product[image]', this.imageUploaderRef.state.file)
-    formData.append('product[file]', this.fileUploaderRef.state.file)
+    formData.append('product[title]', this.refs.title.value.trim());
+    formData.append('product[slug]', this.refs.title.value.trim());
+    formData.append('product[description]', this.refs.description.value.trim());
+    formData.append('product[category_id]', this.refs.category.value);
+    formData.append('product[price]', this.refs.price.value.trim());
+    if( this.imageUploaderRef.state.file ){
+	    formData.append('product[image]', this.imageUploaderRef.state.file);
+    }
+
+    if( this.fileUploaderRef.state.file ){
+	    formData.append('product[file]', this.fileUploaderRef.state.file);
+    }
 
     api[method](urlEndPoint, formData).then((res) => {
       this.props.onSave(res.data);
@@ -65,7 +70,7 @@ class AddProduct extends Component{
         .filter((pr) => productEditable === pr.id)[0]
       : {};
 
-    categories = !!categories ? categories : []
+    categories = !!categories ? categories : [];
 
     return (
       <Modal 
@@ -182,7 +187,7 @@ class AddProduct extends Component{
               type="submit" 
               className="btn btn-primary btn-block"
             >
-              Create Product
+              { !!this.props.productEditable ? "Update" : "Create" }
             </button>
           </form>
 

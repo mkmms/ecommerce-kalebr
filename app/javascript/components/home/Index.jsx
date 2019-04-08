@@ -9,7 +9,7 @@ class Home extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			cart: this.props.cart,
+			cart: props.cart || [],
 			errors: null,
 			message: ""
 		}
@@ -22,7 +22,10 @@ class Home extends React.Component {
 			quantity: 1
 		}).then( ({data}) => {
 			self.setState({
-				message: "Product Added into Cart Successfully"
+				message: "Product Added into Cart Successfully",
+				cart: [
+					...data.cart_items
+				]
 			})
 		}).catch( ({response}) => {
 			if( response.status == 401 ){
@@ -35,7 +38,18 @@ class Home extends React.Component {
 		})
 	}
 
-  render () {
+	componentDidMount() {
+		let self = this;
+		setTimeout( () => {
+			window.__updateCart(self.state.cart);
+		},1000)
+	}
+
+	componentDidUpdate(prevProps, prevState, snapshot) {
+		window.__updateCart(this.state.cart);
+	}
+
+	render () {
 
     return (
 			<div className="container">

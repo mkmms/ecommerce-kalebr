@@ -53,7 +53,24 @@ const LoggedOut = ({isLoggedIn}) => {
 }
 
 class Header extends Component{
-  render(){
+	constructor(props){
+		super(props);
+		this.state = {
+			auth: this.props.auth,
+			cart: this.props.cart
+		}
+	}
+
+	componentDidMount() {
+		let self = this;
+		window.__updateCart = (cart) => {
+			self.setState({
+				cart: cart
+			})
+		}
+	}
+
+	render(){
     return (
       <div className="p-3 px-md-4 bg-white border-bottom shadow-sm">
         <div className="container">
@@ -65,13 +82,13 @@ class Header extends Component{
             </h5>
             <nav className="my-2 my-md-0 mr-md-3">
               <LoggedIn
-                isLoggedIn={this.props.auth.isLoggedIn}
-                isAdmin={this.props.auth.isAdmin}
-                cart={this.props.cart}
+                isLoggedIn={this.state.auth.isLoggedIn}
+                isAdmin={this.state.auth.isAdmin}
+                cart={this.state.cart}
               />
             </nav>
             <LoggedOut
-              isLoggedIn={this.props.auth.isLoggedIn}
+              isLoggedIn={this.state.auth.isLoggedIn}
             />
           </div>
         </div>

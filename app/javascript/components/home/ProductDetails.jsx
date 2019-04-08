@@ -3,10 +3,17 @@ import api from '../../axios.instance';
 
 class ProductDetails extends Component{
   constructor(props){
-    super(props)
+    super(props);
+	  this.state = {
+    	cart: props.cart
+	  }
   }
 
-  addToCart(){
+  componentDidUpdate(prevProps, prevState, snapshot) {
+	  window.__updateCart(this.state.cart);
+  }
+
+	addToCart(){
     let self = this;
     let {
       product
@@ -17,8 +24,9 @@ class ProductDetails extends Component{
 			quantity: 1
 		}).then( ({data}) => {
 			self.setState({
-				message: "Product Added into Cart Successfully"
-      })
+				message: "Product Added into Cart Successfully",
+				cart: data.cart_items
+      });
       
       window.location = "/cart"
 		}).catch( ({response}) => {
