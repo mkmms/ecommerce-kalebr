@@ -4,7 +4,7 @@ class ImageUploader extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      file: '',
+      file: null,
       imagePreviewUrl: !!props.uploadedImage ? props.uploadedImage.url : ""
     };
     props.imageUploaderRef(this);

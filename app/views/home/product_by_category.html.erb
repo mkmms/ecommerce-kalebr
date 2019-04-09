@@ -3,7 +3,8 @@
     products: @products,
     categories: @categories,
     category: @category,
-    is_admin: user_signed_in? && current_user.admin?
+    is_admin: user_signed_in? && current_user.admin?,
+    cart: @cart
   }, {
     prerender: true
   }) 
