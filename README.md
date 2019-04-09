@@ -1,25 +1,30 @@
-# README
+### E-Commerce SaS for selling Electronic Products, such as Pdf's, Illustations
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+a sample Ruby on Rails application integrated with two factor authentication based E-Commerce App.
 
-Things you may want to cover:
+## Local Setup
 
-* Ruby version
+* Clone the Repository
+```cassandraql
+    git clone https://github.com/mkmms/ecommerce-kalebr
+    cd ecommerce-kalebr
+```
 
-* System dependencies
+* Install the dependencies.
+```cassandraql
+    bundle install
+```
 
-* Configuration
+Copy the .env.example file to .env, and edit it including your credentials for the Twilio API and Mailer configs
 
-* Database creation
 
-* Database initialization
+* Create database and run migrations.
+ 
+```
+    bundle exec rake db:setup
+```
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# ecommerce-kalebr
+* Start the server
+```
+    rails s
+```
